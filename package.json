@@ -1,0 +1,20 @@
+{
+  "name": "hypervid",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WP Theme.",
+  "author": "Gail Middleton",
+  "license": "GPU",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grail143/hypervid.git"
+  },
+  "bugs": {
+    "url": "https://github.com/grail143/hypervid/issues"
+  },
+  "homepage": "https://github.com/grail143/hypervid",
+  "dependencies": {
+    "gsap": "^3.6.1",
+    "sass": "^1.32.8"
+  }
+}
