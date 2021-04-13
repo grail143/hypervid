@@ -4,7 +4,7 @@
   "private": true,
   "description": "WP Theme.",
   "author": "Gail Middleton",
-  "license": "GPU",
+  "license": "GPL-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/grail143/hypervid.git"
@@ -13,8 +13,25 @@
     "url": "https://github.com/grail143/hypervid/issues"
   },
   "homepage": "https://github.com/grail143/hypervid",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
   "dependencies": {
-    "gsap": "^3.6.1",
-    "sass": "^1.32.8"
-  }
+    "gsap": "^3.6.1"
+  },
+  "main": "webpack.config.js",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.1.0",
+    "webpack": "^5.32.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-stream": "^6.1.2"
+  },
+  "keywords": [
+    "wordpress",
+    "hypergrail",
+    "videos"
+  ]
 }

@@ -6,10 +6,6 @@
  *
  */
 ?>
-     </div>
-     <!-- /.row -->
-  </div>
-  <!-- /.container -->
 
   <!-- Footer -->
   <footer>

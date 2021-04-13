@@ -9,9 +9,10 @@ get_header(); ?>
         <?php
         if ( have_posts() ) :
             while ( have_posts() ) :
-                the_post();
+                the_post();  $count++;
+    $index = $wp_query->current_post + 1;
 		?>
-			<div id="post-<?php the_ID(); ?>">
+			<div id="post-<?php $index; ?>">
 				<h2><?php the_title(); ?></h2>
 				<div class="post-excerpt"><?php the_excerpt(); ?></div>
 			</div>
