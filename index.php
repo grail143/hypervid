@@ -24,7 +24,21 @@ get_header(); ?>
 					<div class="bottom-bar"></div>
 				</li>
 
-					<?php }
+					<?php } else if (get_post_meta(get_the_ID(), 'codeless_video_embed', true)) { ?>
+
+				<li id="post-<?php the_ID(); ?>">
+					<div class="top-bar"></div>
+					<div  class="img">
+							<?php echo get_post_meta(get_the_ID(), 'codeless_video_embed', true); ?>
+					</div>
+					<div class="descr">
+					<h3><?php the_title(); ?></h3>
+					<div class="post-excerpt"><?php the_excerpt(); ?></div>
+					</div>
+					<div class="bottom-bar"></div>
+				</li>
+
+				<?php }
 					endwhile;
 				endif;
 			?>
