@@ -4,7 +4,9 @@ const webpack = require('webpack-stream');
 
 gulp.task('sass', function(){
   return gulp.src('./sass/*.scss')
-    .pipe(sass()) 
+    .pipe(sass({
+      includePaths: ['./node_modules/purecss-sass/vendor/assets/stylesheets/']
+    }))
     .pipe(gulp.dest('./css'))
 });
 

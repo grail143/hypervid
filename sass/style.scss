@@ -1,3 +1,13 @@
+@import 'purecss/base';
+@import 'purecss/buttons';
+@import 'purecss/forms';
+@import 'purecss/forms-nr';
+@import 'purecss/grids';
+@import 'purecss/grids-responsive';
+@import 'purecss/menus';
+@import 'purecss/tables';
+
+
 * {
 	box-sizing: border-box;
 }
@@ -9,47 +19,54 @@ body{
 	overflow:hidden;
     background: #111;
 }
-.img{
-	background-size: cover; 
-	background-position: center; 
-	background-repeat: no-repeat;
-	width:530px;
-	height:100%;
-    margin: 0;
-    float: left;
+.hv-twpslide-img{
+	height:100%; 
+	text-align:center;
+	background-color:#111;
+	iframe {
+		height: 300px;
+		margin: 0 auto;
+	}
+	img{
+		object-fit: cover;
+		width: 100%;
+		height:100%;;
+	}
 }
-.descr{
-	width:220px;
-	height:100%;
-	font-size:.75rem;
-	overflow:hidden;
-    margin: 0;
-    float: left;
+.hv-twpslide-tags{
+	width:100%;
+	.hv-twpslide-tag {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 60px;
+		height: 25px;
+		padding: 0 5px;
+		font-size: .8em;
+		line-height: 24px;
+		border-radius: 20% / 50%;
+		background-color: orange;
+		display: inline-block;
+	}
 }
-.slider-body {
-    min-height: 50vh;
-    padding: 0;
-    margin: 0;
+.hv-twpslide-slider-body {
+	height: 50vh;
     overflow: auto;
-    position: relative;
     width: 95vw;
-    top: 0;
     float: right;
-	-ms-overflow-style: none;  /* IE and Edge */
-	scrollbar-width: none;
-	overflow-y:hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: hidden;
 }
-	.slider-body::-webkit-scrollbar {
+	.hv-twpslide-slider-body::-webkit-scrollbar {
 	  display: none;
 	}
-.gallery {
-	position: absolute;
-	width: 100%;
+.hv-twpslide-gallery {
 	height: 100vh;
-	overflow: hidden;
+	overflow:hidden;
 }
 
-.cards {    
+.hv-twpslide-cards {    
 	position: absolute;
     width: 750px;
     height: 300px;
@@ -58,20 +75,15 @@ body{
     transform: translate(-50%, -50%);
 }
 
-.cards li {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-    width: 750px;
+.hv-twpslide-cards li { 
     height: 300px;
-	text-align: left;
-	background-color: #9d7cce;
-	position: absolute;
-	top: 0;
-	left: 0;
+    text-align: left;
+    background-color: #9d7cce;
+    position: absolute;
+    left: 0;
 }
 
-.prev,.next {    
+.hv-twpslide-prev,.hv-twpslide-next {    
 	position: absolute;
     display: inline-block;
     border: none !important;
@@ -86,17 +98,17 @@ body{
 	background:transparent;
 }
 
-.next {    
+.hv-twpslide-next {    
 	right: 0;
     left: auto;
 }
 
-.prev:active,.next:active,.prev:focus,.next:focus {
+.hv-twpslide-prev:active,.hv-twpslide-next:active,.hv-twpslide-prev:focus,.hv-twpslide-next:focus {
 	border:0;
 	outline:0;
 	text-shadow:2px 2px #ff0000;
 }
-.top-bar {
+.hv-twpslide-top-bar {
     padding: 2rem;
     margin-bottom: 5.5rem;
     background: linear-gradient(
@@ -110,7 +122,7 @@ body{
 }
 
 
-.bottom-bar {    
+.hv-twpslide-bottom-bar {    
 	background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.45) 100%);
     pointer-events: none;
     position: absolute;
@@ -121,4 +133,47 @@ body{
     background-size: 100% 20%;
     background-position: bottom;
     background-repeat: no-repeat;
+}
+
+
+/*PURECSS removed its hidden clases, work around provided by: https://github.com/pure-css/pure/issues/326*/
+/* pure-hidden-xs */
+@media screen and (max-width:567px) {
+    .pure-visible-sm:not(.pure-visible-xs){display:none}
+    .pure-visible-md:not(.pure-visible-xs){display:none}
+    .pure-visible-lg:not(.pure-visible-xs){display:none}
+    .pure-visible-xl:not(.pure-visible-xs){display:none}
+    .pure-hidden-xs {display:none}
+}
+/* pure-hidden-sm */
+@media screen and (min-width:568px) and (max-width:767px) {
+    .pure-visible-xs:not(.pure-visible-sm){display:none}
+    .pure-visible-md:not(.pure-visible-sm){display:none}
+    .pure-visible-lg:not(.pure-visible-sm){display:none}
+    .pure-visible-xl:not(.pure-visible-sm){display:none}
+    .pure-hidden-sm {display:none}
+}
+/* pure-hidden-md */
+@media screen and (min-width:768px) and (max-width:1023px) {
+    .pure-visible-xs:not(.pure-visible-md){display:none}
+    .pure-visible-sm:not(.pure-visible-md){display:none}
+    .pure-visible-lg:not(.pure-visible-md){display:none}
+    .pure-visible-xl:not(.pure-visible-md){display:none}
+    .pure-hidden-md {display:none}
+}
+/* pure-hidden-lg */
+@media screen and (min-width:1024px) and (max-width:1279px) {
+    .pure-visible-xs:not(.pure-visible-lg){display:none}
+    .pure-visible-sm:not(.pure-visible-lg){display:none}
+    .pure-visible-md:not(.pure-visible-lg){display:none}
+    .pure-visible-xl:not(.pure-visible-lg) {display:none}
+    .pure-hidden-lg{display:none}
+}
+/* pure-hidden-xl */
+@media screen and (min-width:1280px) {
+    .pure-visible-xs:not(.pure-visible-xl){display:none}
+    .pure-visible-sm:not(.pure-visible-xl){display:none}
+    .pure-visible-md:not(.pure-visible-xl){display:none}
+    .pure-visible-lg:not(.pure-visible-xl){display:none}
+    .pure-hidden-xl{display:none}
 }

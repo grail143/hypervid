@@ -5,7 +5,7 @@
  * @package HyperVid_Theme
  *
  */
- @ini_set( 'upload_max_size' , '64M' );
+@ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );
 
@@ -19,7 +19,7 @@ function hv_scripts() {
 }    
 
 add_action( 'wp_enqueue_scripts', 'hv_scripts' );
-
+add_image_size( 'scroller-size', 530, 9999 );
 function mytheme_post_thumbnails() {
     add_theme_support( 'post-thumbnails' );
 }
