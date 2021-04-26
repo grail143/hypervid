@@ -10,7 +10,7 @@ gulp.task('sass', function(){
     .pipe(gulp.dest('./css'))
 });
 
-gulp.task('webpack', function () {
+gulp.task('js', function () {
   return gulp
     .src('src/*.js')
     .pipe(
@@ -19,10 +19,11 @@ gulp.task('webpack', function () {
 		output: {filename: 'main.js'} 
 	  })
     )
+	
     .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('watch', function(){
 	gulp.watch('./sass/*.scss', gulp.series(['sass']));
-	gulp.watch('src/*.js', gulp.series(['webpack']));
+	gulp.watch('src/*.js', gulp.series(['js']));
 });

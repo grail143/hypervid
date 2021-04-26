@@ -6,8 +6,6 @@
  */?>
 
 	<button class="hv-twpslide-prev">&lt;</button> <!--prev button outside of all the gsap magic -->
-	
-	
 	<div class="hv-twpslide-slider-body"><!--BEGIN: hv-twpslide-slider-body is the div used by gsap for scrolling. The outermost gsap div with expected width, height and hidden overflow, hidden scrollbar-->
 		<div class="hv-twpslide-gallery"><!--BEGIN: hv-twpslide-gallery used by gsap to hold all the scrolling objects-->
 			<ul class="hv-twpslide-cards"><!--BEGIN:  hv-twpslide-cards to scroll-->

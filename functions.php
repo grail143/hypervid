@@ -8,6 +8,19 @@
 @ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );
+/**
+ * https://enriquechavez.co/how-to-remove-query-string-version-number-from-static-files-in-wordpress/
+ * Remove the ver query argument from the source path
+ * @param $src  Script loader source path.
+ *
+ * @return string
+ */
+function tm_remove_query_string_version( $src ){
+	return remove_query_arg( 'ver', $src );
+}
+add_filter( 'script_loader_src', 'tm_remove_query_string_version' );
+add_filter( 'style_loader_src', 'tm_remove_query_string_version' );
+
 
 function hv_scripts() {
     wp_enqueue_style( 'hv-style', get_stylesheet_uri() );
