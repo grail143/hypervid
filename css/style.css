@@ -1625,8 +1625,10 @@ striping:
       line-height: 20px;
       border-radius: 20% / 50%;
       background-color: rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 0.7);
       display: inline-block; }
+      .hv-twpslide-info .hv-twpslide-tags .hv-twpslide-tag a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none; }
 
 .hv-twpslide-read-more {
   height: 20%;

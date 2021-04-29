@@ -36,7 +36,7 @@
 								foreach($posttags as $tag): //BEGIN: tag loop
 							?>
 								<div class="hv-twpslide-tag" title="<?php echo trim($tag->name . ' '); ?>"><!--BEGIN: each tag-->
-									<?php echo trim($tag->name . ' '); ?>
+									<?php echo '<a href="' . get_tag_link($tag->term_id) . '">' . $tag->name . '</a>'; ?>
 								</div><!--END: each tag-->
 							<?php 
 								endforeach; // END: tag loop
@@ -46,7 +46,7 @@
 							endif; //BEGIN: if the post has tags
 						?>
 						<div><?php the_excerpt(); ?></div>
-						<div class="hv-twpslide-read-more"><a href="<?php get_the_permalink() ?>" rel="nofollow"><span style="font-weight:bolder;">&gt;</span></a></div>
+						<div class="hv-twpslide-read-more"><a href="<?php the_permalink() ?>" rel="nofollow"><span style="font-weight:bolder;">&gt;</span></a></div>
 					</div><!--END: div with all the info on post-->
 					<div class="hv-twpslide-bottom-bar"></div><!--pretty gradient-->
 				</li><!--END: : li for each post-->
