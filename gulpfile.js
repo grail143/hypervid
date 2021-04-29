@@ -1,12 +1,15 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const webpack = require('webpack-stream');
+const concat = require('gulp-concat');
+
 
 gulp.task('sass', function(){
-  return gulp.src('./sass/*.scss')
+  return gulp.src('./sass/style.scss')
     .pipe(sass({
       includePaths: ['./node_modules/purecss-sass/vendor/assets/stylesheets/']
     }))
+	.pipe(concat('style.css'))
     .pipe(gulp.dest('./css'))
 });
 

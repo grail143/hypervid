@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andika&display=swap');
 @import 'purecss/base';
 @import 'purecss/buttons';
 @import 'purecss/forms';
@@ -6,7 +8,7 @@
 @import 'purecss/grids-responsive';
 @import 'purecss/menus';
 @import 'purecss/tables';
-
+@import 'module_twpslide';
 
 * {
 	box-sizing: border-box;
@@ -19,122 +21,14 @@ body{
 	overflow:hidden;
     background: #111;
 }
-.hv-twpslide-img{
-	height:100%; 
-	text-align:center;
-	background-color:#111;
-	iframe {
-		height: 300px;
-		margin: 0 auto;
-	}
-	img{
-		object-fit: cover;
-		width: 100%;
-		height:100%;;
-	}
-}
-.hv-twpslide-tags{
-	width:100%;
-	.hv-twpslide-tag {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		max-width: 60px;
-		height: 25px;
-		padding: 0 5px;
-		font-size: .8em;
-		line-height: 24px;
-		border-radius: 20% / 50%;
-		background-color: orange;
-		display: inline-block;
-	}
-}
-.hv-twpslide-slider-body {
-	height: 50vh;
-    overflow: auto;
-    width: 95vw;
-    float: right;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    overflow-y: hidden;
-}
-	.hv-twpslide-slider-body::-webkit-scrollbar {
-	  display: none;
-	}
-.hv-twpslide-gallery {
-	height: 100vh;
-	overflow:hidden;
-}
 
-.hv-twpslide-cards {    
-	position: absolute;
-    width: 750px;
-    height: 300px;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"]{
+    font-family: Inter,serif;
+	font-stretch: 100%;
+	font-style: normal;
+	font-weight: 400;
 }
-
-.hv-twpslide-cards li { 
-    height: 300px;
-    text-align: left;
-    background-color: #9d7cce;
-    position: absolute;
-    left: 0;
-}
-
-.hv-twpslide-prev,.hv-twpslide-next {    
-	position: absolute;
-    display: inline-block;
-    border: none !important;
-    color: #bbb;
-    font-size: 1.6rem;
-    z-index: 100;
-    margin-left: 5vw;
-    min-height: 50vh;
-    left: 5vw;
-    width: 4rem;
-    text-align: left;
-	background:transparent;
-}
-
-.hv-twpslide-next {    
-	right: 0;
-    left: auto;
-}
-
-.hv-twpslide-prev:active,.hv-twpslide-next:active,.hv-twpslide-prev:focus,.hv-twpslide-next:focus {
-	border:0;
-	outline:0;
-	text-shadow:2px 2px #ff0000;
-}
-.hv-twpslide-top-bar {
-    padding: 2rem;
-    margin-bottom: 5.5rem;
-    background: linear-gradient(
-180deg
-, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.25) 60%, transparent);
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    z-index: 50;
-    width: 100%;
-}
-
-
-.hv-twpslide-bottom-bar {    
-	background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.45) 100%);
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    z-index: 50;
-    width: 100%;
-    height: 100%;
-    background-size: 100% 20%;
-    background-position: bottom;
-    background-repeat: no-repeat;
-}
-
 
 /*PURECSS removed its hidden clases, work around provided by: https://github.com/pure-css/pure/issues/326*/
 /* pure-hidden-xs */

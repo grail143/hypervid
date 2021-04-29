@@ -25,7 +25,7 @@
 						endif;//end video or image
 					?>
 					</div><!--END: image/vid div-->
-					<div class="pure-hidden-xs pure-hidden-sm pure-u-md-1-4"><!--BEGIN: div with all the info on post, hidden on small-->
+					<div class="pure-hidden-xs pure-hidden-sm pure-u-md-1-4 hv-twpslide-info"><!--BEGIN: div with all the info on post, hidden on small-->
 						<h3><?php the_title(); ?></h3>
 						<?php
 							$posttags = get_the_tags(); 
@@ -35,17 +35,18 @@
 							<?php
 								foreach($posttags as $tag): //BEGIN: tag loop
 							?>
-								<div class="hv-twpslide-tag"><!--BEGIN: each tag-->
+								<div class="hv-twpslide-tag" title="<?php echo trim($tag->name . ' '); ?>"><!--BEGIN: each tag-->
 									<?php echo trim($tag->name . ' '); ?>
 								</div><!--END: each tag-->
 							<?php 
 								endforeach; // END: tag loop
 							?>
-							</div><!--END: tag div-->
+							</div><!--END: tag div--> 
 						<?php 
 							endif; //BEGIN: if the post has tags
 						?>
 						<div><?php the_excerpt(); ?></div>
+						<div class="hv-twpslide-read-more"><a href="<?php get_the_permalink() ?>" rel="nofollow"><span style="font-weight:bolder;">&gt;</span></a></div>
 					</div><!--END: div with all the info on post-->
 					<div class="hv-twpslide-bottom-bar"></div><!--pretty gradient-->
 				</li><!--END: : li for each post-->
