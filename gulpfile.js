@@ -5,28 +5,28 @@ const concat = require('gulp-concat');
 
 
 gulp.task('sass', function(){
-  return gulp.src('./sass/style.scss')
+  return gulp.src('./dev/sass/style.scss')
     .pipe(sass({
       includePaths: ['./node_modules/purecss-sass/vendor/assets/stylesheets/']
     }))
 	.pipe(concat('style.css'))
-    .pipe(gulp.dest('./css'))
+    .pipe(gulp.dest('./dist/css'))
 });
 
 gulp.task('js', function () {
   return gulp
-    .src('src/*.js')
+    .src('./dev/src/*.js')
     .pipe(
       webpack({ 
 		mode: "development",
-		output: {filename: 'main.js'} 
+		output: {filename: 'script.js'} 
 	  })
-    )
+	)
 	
-    .pipe(gulp.dest('dist/'));
+    .pipe(gulp.dest('./dist/js'));
 });
 
 gulp.task('watch', function(){
-	gulp.watch('./sass/*.scss', gulp.series(['sass']));
-	gulp.watch('src/*.js', gulp.series(['js']));
+	gulp.watch('./dev/sass/*.scss', gulp.series(['sass']));
+	gulp.watch('./dev/src/*.js', gulp.series(['js']));
 });

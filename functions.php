@@ -8,6 +8,10 @@
 @ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );
+
+/*includes*/
+include( get_stylesheet_directory() . '/inc/customizer.php' );
+
 /**
  * https://enriquechavez.co/how-to-remove-query-string-version-number-from-static-files-in-wordpress/
  * Remove the ver query argument from the source path
@@ -21,83 +25,81 @@ function tm_remove_query_string_version( $src ){
 add_filter( 'script_loader_src', 'tm_remove_query_string_version' );
 add_filter( 'style_loader_src', 'tm_remove_query_string_version' );
 
-
+/**register scripts**/
 function hv_scripts() {
     wp_enqueue_style( 'hv-style', get_stylesheet_uri() );
-    wp_enqueue_style( 'hv-sass-style', get_template_directory_uri() . '/css/style.css' );
+    wp_enqueue_style( 'hv-sass-style', get_template_directory_uri() . '/dist/css/style.css' );
     wp_enqueue_style( 'hv-font1', "https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" );
     wp_enqueue_style( 'hv-font2', "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" );
 	wp_enqueue_script('jquery');
-    wp_enqueue_script( 'hv-webpack', get_template_directory_uri() . '/dist/main.js' ,'jQuery');
+    wp_enqueue_script( 'hv-webpack', get_template_directory_uri() . '/dist/js/script.js' ,'jQuery');
 }    
 
 add_action( 'wp_enqueue_scripts', 'hv_scripts' );
 add_image_size( 'scroller-size', 530, 9999 );
-function mytheme_post_thumbnails() {
+
+/*register custom image size for twpslide*/
+function hv_post_thumbnails() {
     add_theme_support( 'post-thumbnails' );
 }
-add_action( 'after_setup_theme', 'mytheme_post_thumbnails' );
+add_action( 'after_setup_theme', 'hv_post_thumbnails' );
 
 
 // Add the Page Meta Box
-function codeless_add_custom_meta_box() {
+function hypervid_add_custom_meta_box() {
     add_meta_box(
-            'codeless_meta_box', // $id
-            'Codeless Page Options', // $title 
-            'codeless_show_custom_meta_box', // $callback
-            'page', // $page
-            'normal', // $context
-            'high'); // $priority
+		'hypervid_meta_box', // $id
+		'HyperVid Page Options', // $title 
+		'hypervid_show_custom_meta_box', // $callback
+		'page', // $page
+		'normal', // $context
+		'high', // $priority
+	); 
 }
 
-add_action('add_meta_boxes', 'codeless_add_custom_meta_box');
+add_action('add_meta_boxes', 'hypervid_add_custom_meta_box');
 
 // Add the Post Meta Box
-function codeless_add_custom_post_meta_box() {
+function hypervid_add_custom_post_meta_box() {
     add_meta_box(
-            'codeless_meta_box', // $id
-            'Codeless Page Options', // $title 
-            'codeless_show_custom_post_meta_box', // $callback
-            'post', // $post
-            'normal', // $context
-            'high'); // $priority
+		'', // $id
+		'HyperVid Page Options', // $title 
+		'hypervid_show_custom_post_meta_box', // $callback
+		'post', // $post
+		'normal', // $context
+		'high', // $priority
+	);
 }
 
-add_action('add_meta_boxes', 'codeless_add_custom_post_meta_box');
-
-$prefix = 'codeless_';
-
-// Field Array (Pages Meta)
-$codeless_meta_fields = array();
+add_action('add_meta_boxes', 'hypervid_add_custom_post_meta_box');
 
 // Field Array (Posts Meta)
-$codeless_post_meta_fields = array(
+$hypervid_post_meta_fields = array(
     array(
         'label' => 'Featured Video Embed Code',
         'desc' => 'Paste your video code here to show a video instead of a featured image.',
-        'id' => $prefix . 'video_embed',
+        'id' => 'hypervid_video_embed',
         'type' => 'textarea'
     )
 );
 
 // The Callback for page meta box
-function codeless_show_custom_meta_box() {
-    global $codeless_meta_fields;
-    codeless_show_page_meta_box($codeless_meta_fields);
+function hypervid_show_custom_meta_box() {
+    global $hypervid_post_meta_fields;
+    hypervid_show_page_meta_box($hypervid_post_meta_fields);
 }
 
 // The Callback for post meta box
-function codeless_show_custom_post_meta_box() {
-    global $codeless_post_meta_fields;
-    codeless_show_page_meta_box($codeless_post_meta_fields);
+function hypervid_show_custom_post_meta_box() {
+    global $hypervid_post_meta_fields;
+    hypervid_show_page_meta_box($hypervid_post_meta_fields);
 }
 
 // The Callback
-function codeless_show_page_meta_box($meta_fields) {
+function hypervid_show_page_meta_box($meta_fields) {
 
     global $post;
-// Use nonce for verification
-    echo '<input type="hidden" name="custom_meta_box_nonce" value="' . wp_create_nonce(basename(__FILE__)) . '" />';
+    echo '<input type="hidden" name="hypervid_meta_box_nonce" value="' . wp_create_nonce(basename(__FILE__)) . '" />';
 
     // Begin the field table and loop
     echo '<table class="form-table">';
@@ -143,12 +145,11 @@ function codeless_show_page_meta_box($meta_fields) {
 }
 
 // Save the Data
-function codeless_save_custom_meta($post_id) {
-    global $codeless_meta_fields;
-    global $codeless_post_meta_fields;
+function hypervid_save_custom_meta($post_id) {
+    global $hypervid_post_meta_fields;
 
     // verify nonce
-    if (!wp_verify_nonce($_POST['custom_meta_box_nonce'], basename(__FILE__)))
+    if (!wp_verify_nonce($_POST['hypervid_meta_box_nonce'], basename(__FILE__)))
         return $post_id;
     // check autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
@@ -165,13 +166,7 @@ function codeless_save_custom_meta($post_id) {
     $fields;
 
     // Check permissions (pages or posts)
-    if ('page' == $_POST['post_type']) {
-
-        $fields = $codeless_meta_fields;
-    } else if ('post' == $_POST['post_type']) {
-
-        $fields = $codeless_post_meta_fields;
-    }
+        $fields = $hypervid_post_meta_fields;
 
     // loop through fields and save the data
     foreach ($fields as $field) {
@@ -185,5 +180,108 @@ function codeless_save_custom_meta($post_id) {
     } // end foreach
 }
 
-add_action('save_post', 'codeless_save_custom_meta');
+add_action('save_post', 'hypervid_save_custom_meta');
+
+// Add Video Post Type
+function create_video_posttype() {
+ 
+    register_post_type( 'videos',
+        array(
+            'labels' => array(
+                'name' => __( 'Videos' ),
+                'singular_name' => __( 'Video' )
+            ),
+			'supports' => array(
+				'title', 
+				'editor', 
+				'excerpt', 
+				'author', 
+				'thumbnail', 
+				'comments', 
+				'revisions', 
+				'custom-fields',
+			),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'videos'),
+            'show_in_rest' => true,
+ 
+        )
+    );
+}
+
+add_action( 'init', 'create_video_posttype' );
+
+
+if ( ! function_exists( 'hypervid_setup' ) ) {
+	function hypervid_setup() {
+		add_theme_support( 'title-tag' );
+
+		/**
+		 * Add post-formats support.
+		 */
+		add_theme_support(
+			'post-formats',
+			array(
+				'link',
+				'aside',
+				'gallery',
+				'image',
+				'quote',
+				'status',
+				'video',
+				'audio',
+				'chat',
+			)
+		);
+		add_theme_support(
+			'html5',
+			array(
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'style',
+				'script',
+				'navigation-widgets',
+			)
+		);
+
+		// Add support for Block Styles.
+		add_theme_support( 'wp-block-styles' );
+		}
+	}
+add_action( 'after_setup_theme', 'hypervid_setup' );
+
+
+
+
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

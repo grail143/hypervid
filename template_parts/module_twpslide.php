@@ -9,17 +9,21 @@
 	<div class="hv-twpslide-slider-body"><!--BEGIN: hv-twpslide-slider-body is the div used by gsap for scrolling. The outermost gsap div with expected width, height and hidden overflow, hidden scrollbar-->
 		<div class="hv-twpslide-gallery"><!--BEGIN: hv-twpslide-gallery used by gsap to hold all the scrolling objects-->
 			<ul class="hv-twpslide-cards"><!--BEGIN:  hv-twpslide-cards to scroll-->
-		    <?php
-				if ( have_posts() ) : //BEGIN: get the posts
-					while ( have_posts() ): the_post(); //BEGIN: loop posts
-						if (get_post_meta(get_the_ID(), 'codeless_video_embed', true) || has_post_thumbnail()): //BEGIN: if thumbnail or video
+<?php 
+$args = array( 'post_type' => array('videos','post'), 'posts_per_page' => 100 );
+$the_query = new WP_Query( $args ); 
+?>
+<?php if ( $the_query->have_posts() ) : ?>
+<?php while ( $the_query->have_posts() ) : $the_query->the_post(); 
+
+						if (get_post_meta(get_the_ID(), 'hypervid_video_embed', true) || has_post_thumbnail()): //BEGIN: if thumbnail or video
 			?> 
 				<li  class="pure-g" id="post-<?php the_ID(); ?>"><!--BEGIN: li for each post is contained in list item and pure grid-->
 					<div class="hv-twpslide-top-bar"></div><!--pretty gradient-->
 					<div  class="hv-twpslide-img pure-u-1 pure-u-md-3-4"><!--BEGIN: image/vid div; hv-twpslide-img needed for img tag to confine to this div-->
 					<?php
-						if (get_post_meta(get_the_ID(), 'codeless_video_embed', true)): //if it is a video post
-							echo get_post_meta(get_the_ID(), 'codeless_video_embed', true); //currently featured video is saved as embed code . . . todo: update featured video input, do I need 'echo'?, confine embed to this size
+						if (get_post_meta(get_the_ID(), 'hypervid_video_embed', true)): //if it is a video post
+							echo get_post_meta(get_the_ID(), 'hypervid_video_embed', true); //currently featured video is saved as embed code . . . todo: update featured video input, do I need 'echo'?, confine embed to this size
 						else: //no video but only got here with photo
 							the_post_thumbnail('scroller-size'); //returns img tag
 						endif;//end video or image

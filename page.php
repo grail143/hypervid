@@ -4,22 +4,12 @@
  * @package HyperVid_Theme
  *
  */
-get_header(); ?>
+get_header(); 
 
-        <?php
-        if ( have_posts() ) :
-            while ( have_posts() ) :
-                the_post();  $count++;
-    $index = $wp_query->current_post + 1;
-		?>
-			<div id="post-<?php $index; ?>">
-				<h2><?php the_title(); ?></h2>
-				<div class="post-excerpt"><?php the_excerpt(); ?></div>
-			</div>
+if(is_front_page() || is_home()):
+	include get_theme_file_path('template_parts/module_twpslide.php');
+endif;
 
-		<?php
-            endwhile;
-        endif;
-        ?>
+get_footer(); 
 
-<?php get_footer(); ?>
+?>
